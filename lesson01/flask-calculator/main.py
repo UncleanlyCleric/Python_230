@@ -6,10 +6,9 @@ import base64
 from flask import Flask, render_template, request, redirect, url_for, session
 from model import SavedTotal
 
-
 app = Flask(__name__)
-app.secret_key = b']\x05[\x10\x04+S.\xde45P\xe4T\xd7"\xa6\x7f\xd6\x8f6\xed\xd8\xfe'
-
+# app.secret_key = b']\x05[\x10\x04+S.\xde45P\xe4T\xd7"\xa6\x7f\xd6\x8f6\xed\xd8\xfe'
+app.secret_key = os.environ.get('SECRET_KEY').encode()
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
