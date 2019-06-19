@@ -37,7 +37,7 @@ def save():
 
 
 @app.route('/retrieve')
-def revtrieve():
+def retrieve():
     code = request.args.get('code', None)
 
     '''
