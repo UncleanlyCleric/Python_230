@@ -6,6 +6,9 @@
   <p>Total: <span id="total">{{ session.total }}</span></p>
   <form method="POST">
     <label for="number">Number: </label><input type="number" id="number" name="number">
-    <input type="submit" value="Add It!>"
+    <input type="submit" value="Add It!">
+  </form>
+  <form method="POST" action="{{ url_for('save') }}">
+    <input type="submit" value="Save It!">
   </form>
 {% endblock content %}
