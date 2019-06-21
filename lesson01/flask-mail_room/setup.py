@@ -1,6 +1,10 @@
+#!/usr/bin/env python3
+
+#pylint: disable=W0611,C0103,C0111
+
 import random
 
-from model import db, Donor, Donation 
+from model import db, Donor, Donation
 
 db.connect()
 
@@ -23,4 +27,3 @@ donors = [alice, bob, charlie]
 
 for x in range(30):
     Donation(donor=random.choice(donors), value=random.randint(100, 10000)).save()
-

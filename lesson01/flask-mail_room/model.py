@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+
+# pylint: disable=W0611,C0103,C0111,R0903
+
 import os
 
 from peewee import Model, CharField, IntegerField, ForeignKeyField
@@ -17,4 +21,3 @@ class Donation(Model):
 
     class Meta:
         database = db
-
