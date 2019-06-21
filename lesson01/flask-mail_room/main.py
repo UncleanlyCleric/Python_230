@@ -24,17 +24,16 @@ def list_all():
 
 @app.route('/add/', methods=['GET', 'POST'])
 def add_donation():
-    try:
-        if request.method == 'POST':
-            new_donor = Donor(name=request.form['donor'])
-            new_donor.save()
-            donation = Donation(donor=new_donor, value=request.form['value'])
-            donation.save()
-            return redirect(url_for('list_all'))
-        return render_template('add.jinja2')
-
-    except peewee.IntegrityError as e:
-        print('{} already exists'.format('new_donor' in e.args))
+    if request.method == 'POST':
+#        try:
+        new_donor = Donor(name=request.form['donor'])
+        new_donor.save()
+        donation = Donation(donor=new_donor, value=request.form['value'])
+        donation.save()
+        return redirect(url_for('list_all'))
+#        except peewee.IntegrityError as e:
+#            raise ValueError('{} already exists'.format('new_donor' in e.args))
+    return render_template('add.jinja2')
 
 
 if __name__ == "__main__":
