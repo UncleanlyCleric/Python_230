@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
-
-#pylint: disable=W0611,C0103,C0111
-
+'''
+Building the default database and populating it.
+'''
 import random
+from model import DB, Donor, Donation
 
-from model import db, Donor, Donation
+# pylint: disable = C0103
 
-db.connect()
+DB.connect()
 
 # This line will allow you "upgrade" an existing database by
 # dropping all existing tables from it.
-db.drop_tables([Donor, Donation])
+DB.drop_tables([Donor, Donation])
 
-db.create_tables([Donor, Donation])
+DB.create_tables([Donor, Donation])
 
 alice = Donor(name="Alice")
 alice.save()

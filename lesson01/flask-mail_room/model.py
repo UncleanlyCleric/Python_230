@@ -1,23 +1,37 @@
 #!/usr/bin/env python3
-
-# pylint: disable=W0611,C0103,C0111,R0903
-
+'''
+Modelling for the donor collection in flask-mailroom
+'''
 import os
 
+# pylint: disable = R0903
 from peewee import Model, CharField, IntegerField, ForeignKeyField
-from playhouse.db_url import connect
+from playhouse.DB_url import connect
 
-db = connect(os.environ.get('DATABASE_URL', 'sqlite:///my_database.db'))
+DB = connect(os.environ.get('DATABASE_URL', 'sqlite:///my_database.DB'))
 
 class Donor(Model):
+    '''
+    Modelling the donor field, it's pretty simple.  I had to change the
+    unique to False in order for the donation collection to work correctly.
+    '''
     name = CharField(max_length=255, unique=False)
 
     class Meta:
-        database = db
+        '''
+        Defining database for donors.
+        '''
+        database = DB
 
 class Donation(Model):
+    '''
+    Modelling the donation field.
+    '''
     value = IntegerField()
     donor = ForeignKeyField(Donor, backref='donations')
 
     class Meta:
-        database = db
+        '''
+        Defining database for everything else.
+        '''
+        database = DB

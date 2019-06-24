@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
-#pylint: disable=W0611,C0103,C0111
-
+'''
+flask-mailroom for python230
+'''
 import os
 import base64
 import peewee
@@ -25,14 +26,11 @@ def list_all():
 @app.route('/add/', methods=['GET', 'POST'])
 def add_donation():
     if request.method == 'POST':
-#        try:
         new_donor = Donor(name=request.form['donor'])
         new_donor.save()
         donation = Donation(donor=new_donor, value=request.form['value'])
         donation.save()
         return redirect(url_for('list_all'))
-#        except peewee.IntegrityError as e:
-#            raise ValueError('{} already exists'.format('new_donor' in e.args))
     return render_template('add.jinja2')
 
 
