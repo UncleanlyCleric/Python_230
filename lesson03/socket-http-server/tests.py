@@ -3,7 +3,6 @@ import subprocess
 import http.client
 import os
 
-
 class WebTestCase(unittest.TestCase):
     """tests for the echo server and client"""
 
@@ -190,7 +189,7 @@ class WebTestCase(unittest.TestCase):
 
     def test_ok_response_at_root_index(self):
         """
-        A call to / at least yields a 200 OK response 
+        A call to / at least yields a 200 OK response
         """
 
         directory = ''
