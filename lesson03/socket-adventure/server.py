@@ -99,7 +99,7 @@ from the corner of your eyes you can see shapes in the pattern, they disappear\
 when you look closer.  There is an exit to the east.',
 
             'The room is bare cinder block, the fluorescent lights flicker in\
-time with your breath.  There is an exit to the west.',
+time with your breathing.  There is an exit to the west.',
 
             'A single lightbulb hangs in the center of this red room.  Faint \
 voices whisper your name, the whispering is randomly punctuated with a scream.\
