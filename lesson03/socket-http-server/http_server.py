@@ -62,9 +62,9 @@ def parse_request(request):
     NotImplementedError if the method of the request is not GET.
     '''
 
-    method, path, version = request.split("\r\n")[0].split(" ")
+    method, path, version = request.split('\r\n')[0].split(' ')
 
-    if method != "GET":
+    if method != 'GET':
         raise NotImplementedError
 
     return path
@@ -98,30 +98,26 @@ def response_path(path):
 
     '''
 
-    home_dir = os.path.abspath("webroot")
+    home_dir = os.path.abspath('webroot')
 
     location = os.path.join(home_dir, path[1:])
 
     try:
-        if path.endswith(".py"):
-            results = subprocess.run(["python", location], capture_output=True)
-
+        if path.endswith('.py'):
+            results = subprocess.run(['python', location], capture_output=True)
             content = results.stdout
-            mimetype = b"text/html"
+            mimetype = b'text/html'
 
-        elif os.path.isdir(location):
+        if os.path.isdir(location):
             listing = [item for item in os.listdir(location)]
-
-            content = "\r\n".join(listing).encode("utf-8")
-
-            mimetype = b"text/plain"
+            content = '\r\n'.join(listing).encode('utf-8')
+            mimetype = b'text/plain'
 
         else:
-            with open(location, "rb") as file:
+            with open(location, 'rb') as file:
                 content = file.read()
-
             file_type = mimetypes.guess_type(path)[0]
-            mimetype = file_type.encode("utf-8")
+            mimetype = file_type.encode('utf-8')
 
     except FileNotFoundError:
         raise NameError
@@ -143,11 +139,12 @@ def server(log_buffer=sys.stderr):
     try:
         while True:
             print('waiting for a connection', file=log_buffer)
-            conn, addr = sock.accept()  # blocking
+            conn, addr = sock.accept()
+
             try:
                 print('connection - {0}:{1}'.format(*addr), file=log_buffer)
-
                 request = ''
+
                 while True:
                     data = conn.recv(1024)
                     request += data.decode('utf8')
@@ -169,14 +166,14 @@ def server(log_buffer=sys.stderr):
                 except NameError:
                     response = response_not_found()
 
-                response = response_ok(
-                    body=b'Welcome to my web server',
-                    mimetype=b'text/plain'
-                )
-
                 conn.sendall(response)
+
+            except KeyboardInterrupt:
+                raise KeyboardInterrupt
+
             except:
                 traceback.print_exc()
+
             finally:
                 conn.close()
 
