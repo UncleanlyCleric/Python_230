@@ -69,6 +69,7 @@ class WebTestCase(unittest.TestCase):
     def test_get_sample_text_mime_type(self):
         """
         A call to /sample.txt returns the correct mimetype
+        Passed
         """
         file = 'sample.txt'
 
@@ -163,7 +164,7 @@ class WebTestCase(unittest.TestCase):
         directory = 'images'
         local_path = os.path.join('webroot', directory)
         web_path = '/' + directory
-        error_comment = "Error encountered while visiting " + web_path
+        error_comment = "Error encountered while visiting" + web_path
 
         response = self.get_response(web_path)
         body = response.read().decode()
@@ -190,6 +191,7 @@ class WebTestCase(unittest.TestCase):
     def test_ok_response_at_root_index(self):
         """
         A call to / at least yields a 200 OK response
+        Passed
         """
 
         directory = ''
