@@ -2,7 +2,7 @@
 '''
 Python 230 Lesson 04, WSGI Calculator
 '''
-#pylint: disable=W0703
+#pylint: disable=W0703, W0143, W0150
 from functools import reduce
 import operator
 import traceback
@@ -27,28 +27,29 @@ def index():
   <tbody>
     <tr class="table-primary">
       <th scope="row">Add</th>
-      <td>200 + 50</td>
-      <td><a href=http://localhost:8080/add/200/50>http://localhost:8080/add/200/50</a></td>
+      <td>123 + 45</td>
+      <td><a href=http://localhost:8080/add/123/45>http://localhost:8080/add/123/45</a></td>
     </tr>
     <tr class="table-secondary">
       <th scope="row">Subtract</th>
-      <td>10 - 8 - 1</td>
-      <td><a href=http://localhost:8080/subtract/10/8/1>http://localhost:8080/subtract/10/8/1</a></td>
+      <td>22 - 1 - 2</td>
+      <td><a href=http://localhost:8080/subtract/22/1/2>http://localhost:8080/subtract/22/1/2</a></td>
     </tr>
     <tr class="table-warning">
       <th scope="row">Multiply</th>
-      <td>2 * 5 * 3</td>
-      <td><a href=http://localhost:8080/multiply/2/5/3>http://localhost:8080/multiply/2/5/3</a></td>
+      <td>3 * 10 * 4</td>
+      <td><a href=http://localhost:8080/multiply/3/10/4>http://localhost:8080/multiply/3/10/4</a></td>
     </tr>
     <tr class="table-info">
       <th scope="row">Divide</th>
-      <td>400 / 4</td>
-      <td><a href=http://localhost:8080/divide/400/4>http://localhost:8080/divide/400/4</a></td>
+      <td>15452 / 4</td>
+      <td><a href=http://localhost:8080/divide/15452/4>http://localhost:8080/divide/15452/4</a></td>
     </tr>
   </tbody>
 </table>
 '''
     return body
+
 
 def add(*args):
     '''
