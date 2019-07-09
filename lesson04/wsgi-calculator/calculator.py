@@ -2,7 +2,7 @@
 '''
 Python 230 Lesson 04, WSGI Calculator
 '''
-#pylint: disable=W0703, W0143, W0150
+#pylint: disable=W0703
 from functools import reduce
 import operator
 import traceback
@@ -18,29 +18,29 @@ def index():
     Here are some examples:<br>
 <table class="table table-hover">
   <thead>
-    <tr class="table-secondary">
+    <tr class="table-dark">
       <th scope="col">Function</th>
       <th scope="col">Numbers</th>
       <th scope="col">URL</th>
     </tr>
   </thead>
   <tbody>
-    <tr class="table-success">
+    <tr class="table-primary">
       <th scope="row">Add</th>
       <td>200 + 50</td>
       <td><a href=http://localhost:8080/add/200/50>http://localhost:8080/add/200/50</a></td>
     </tr>
-    <tr class="table-danger">
+    <tr class="table-secondary">
       <th scope="row">Subtract</th>
       <td>10 - 8 - 1</td>
       <td><a href=http://localhost:8080/subtract/10/8/1>http://localhost:8080/subtract/10/8/1</a></td>
     </tr>
-    <tr class="table-info">
+    <tr class="table-warning">
       <th scope="row">Multiply</th>
       <td>2 * 5 * 3</td>
       <td><a href=http://localhost:8080/multiply/2/5/3>http://localhost:8080/multiply/2/5/3</a></td>
     </tr>
-    <tr class="table-warning">
+    <tr class="table-info">
       <th scope="row">Divide</th>
       <td>400 / 4</td>
       <td><a href=http://localhost:8080/divide/400/4>http://localhost:8080/divide/400/4</a></td>
@@ -212,7 +212,7 @@ def application(environ, start_response):
 
     finally:
         final_body = body_template().format(body)
-        headers.append(("Content-length", str(len(body))))
+        headers.append(("Content-length", str(len(final_body))))
         start_response(status, headers)
 
         return [final_body.encode("utf8")]
