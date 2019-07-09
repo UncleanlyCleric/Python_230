@@ -1,17 +1,17 @@
 #!/usr/bin/#!/usr/bin/env python3
-"""
+'''
 Python 230 Lesson 04, WSGI Calculator
-"""
+'''
 #pylint: disable=W0703, W0143, W0150
 from functools import reduce
 import operator
 import traceback
 
 def index():
-    """
+    '''
     Instructions for using the calculator.
-    """
-    body = """
+    '''
+    body = '''
     You can use this website to add, subtract, multiply, or divide numbers.<br>
     Change the url to specify the function and numbers that you want to use.<br>
     You can enter two or more numbers.<br><br>
@@ -47,13 +47,13 @@ def index():
     </tr>
   </tbody>
 </table>
-"""
+'''
     return body
 
 def add(*args):
-    """
+    '''
     Returns a STRING with the sum of the arguments
-    """
+    '''
     nums = map(int, args)
     total = reduce(operator.add, nums)
 
@@ -61,9 +61,9 @@ def add(*args):
 
 
 def subtract(*args):
-    """
+    '''
     Returns a STRING with the difference of the arguments
-    """
+    '''
     nums = map(int, args)
     total = reduce(operator.sub, nums)
 
@@ -71,9 +71,9 @@ def subtract(*args):
 
 
 def multiply(*args):
-    """
+    '''
     Returns a STRING with the product of the arguments
-    """
+    '''
     nums = map(int, args)
     total = reduce(operator.mul, nums)
 
@@ -81,9 +81,9 @@ def multiply(*args):
 
 
 def divide(*args):
-    """
+    '''
     Returns a string with the quotient of the arguments
-    """
+    '''
     nums = map(int, args)
 
     try:
@@ -96,10 +96,10 @@ def divide(*args):
 
 
 def resolve_path(path):
-    """
+    '''
     Should return two values: a callable and an iterable of
     arguments.
-    """
+    '''
 
     funcs = {
         "": index,
@@ -127,10 +127,10 @@ def resolve_path(path):
 
 
 def card_template():
-    """
+    '''
     Template for formatting a card.
-    """
-    template = """
+    '''
+    template = '''
     <div class="card">
         <div class="card-header" style="background-color:{}">
             {}
@@ -140,16 +140,16 @@ def card_template():
             <a href="http://localhost:8080/" class="btn btn-secondary">Return home</a>
         </div>
     </div>
-    """
+    '''
 
     return template
 
 
 def body_template():
-    """
+    '''
     Template for the website body
-    """
-    template = """
+    '''
+    template = '''
 <!doctype html>
 <html lang="en">
   <head>
@@ -167,15 +167,15 @@ def body_template():
     </div>
   </body>
 </html>
-"""
+'''
     return template
 
 
 def application(environ, start_response):
-    """
+    '''
     This is defining the overall application.  Here we have exception handling,
     and calls for templates.
-    """
+    '''
     headers = [("Content-type", "text/html")]
     try:
         path = environ.get("PATH_INFO", None)
