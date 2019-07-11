@@ -13,8 +13,8 @@ def index():
     '''
     body = '''
     You can use this website to add, subtract, multiply, or divide numbers.<br>
-    Change the url to specify the function and numbers that you want to use.<br>
-    You can enter two or more numbers.<br><br>
+    Change the url path to specify the function and numbers that you want to use.<br>
+    You can enter two or more numbers, separated by slashes.<br><br>
     Here are some examples:<br>
 <table class="table table-hover">
   <thead>
@@ -49,82 +49,6 @@ def index():
 </table>
 '''
     return body
-
-
-def add(*args):
-    '''
-    Returns a STRING with the sum of the arguments
-    '''
-    nums = map(int, args)
-    total = reduce(operator.add, nums)
-
-    return str(total)
-
-
-def subtract(*args):
-    '''
-    Returns a STRING with the difference of the arguments
-    '''
-    nums = map(int, args)
-    total = reduce(operator.sub, nums)
-
-    return str(total)
-
-
-def multiply(*args):
-    '''
-    Returns a STRING with the product of the arguments
-    '''
-    nums = map(int, args)
-    total = reduce(operator.mul, nums)
-
-    return str(total)
-
-
-def divide(*args):
-    '''
-    Returns a string with the quotient of the arguments
-    '''
-    nums = map(int, args)
-
-    try:
-        total = reduce(operator.truediv, nums)
-
-    except ZeroDivisionError:
-        raise ZeroDivisionError
-
-    return str(total)
-
-
-def resolve_path(path):
-    '''
-    Should return two values: a callable and an iterable of
-    arguments.
-    '''
-
-    funcs = {
-        "": index,
-        "add": add,
-        "subtract": subtract,
-        "multiply": multiply,
-        "divide": divide
-    }
-
-    path = path.strip("/").split("/")
-
-    func_name = path[0]
-    args = path[1:]
-
-    try:
-        func = funcs[func_name]
-
-        if func != index and len(args) <= 1:
-            raise ValueError
-
-    except KeyError:
-        raise NameError
-
-    return func, args
 
 
 def card_template():
@@ -170,6 +94,82 @@ def body_template():
 </html>
 '''
     return template
+
+
+def resolve_path(path):
+    '''
+    Should return two values: a callable and an iterable of
+    arguments.
+    '''
+
+    funcs = {
+        "": index,
+        "add": add,
+        "subtract": subtract,
+        "multiply": multiply,
+        "divide": divide
+    }
+
+    path = path.strip("/").split("/")
+
+    func_name = path[0]
+    args = path[1:]
+
+    try:
+        func = funcs[func_name]
+
+        if func != index and len(args) <= 1:
+            raise ValueError
+
+    except KeyError:
+        raise NameError
+
+    return func, args
+
+
+def add(*args):
+    '''
+    Returns a STRING with the sum of the arguments
+    '''
+    nums = map(int, args)
+    total = reduce(operator.add, nums)
+
+    return str(total)
+
+
+def subtract(*args):
+    '''
+    Returns a STRING with the difference of the arguments
+    '''
+    nums = map(int, args)
+    total = reduce(operator.sub, nums)
+
+    return str(total)
+
+
+def multiply(*args):
+    '''
+    Returns a STRING with the product of the arguments
+    '''
+    nums = map(int, args)
+    total = reduce(operator.mul, nums)
+
+    return str(total)
+
+
+def divide(*args):
+    '''
+    Returns a string with the quotient of the arguments
+    '''
+    nums = map(int, args)
+
+    try:
+        total = reduce(operator.truediv, nums)
+
+    except ZeroDivisionError:
+        raise ZeroDivisionError
+
+    return str(total)
 
 
 def application(environ, start_response):
