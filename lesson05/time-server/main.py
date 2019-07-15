@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 '''
 Python 230 Lesson 05 activity:  Epoch time microserver
 '''
