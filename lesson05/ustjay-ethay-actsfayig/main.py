@@ -19,8 +19,13 @@ def get_fact():
     soup = BeautifulSoup(response.content, 'html.parser')
     facts = soup.find_all('div', id='content')
 
-    return facts[0].getText()
+    fact = facts[0].getText()
 
+    # Fun little formatting issue here.
+    fact = fact.replace("â€™", "'").replace("â€œ", '"').replace('â€”', "—").\
+    replace("â€", '"')
+
+    return fact
 
 
 @APP.route('/')
