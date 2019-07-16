@@ -223,3 +223,16 @@ if __name__ == "__main__":
     from wsgiref.simple_server import make_server
     SRV = make_server("localhost", 8080, application)
     SRV.serve_forever()
+
+
+'''
+Michael Gregor [7:13 PM]
+A note about limiting duplication in your code.  For you add, subtract, etc
+functions, you can abstract them out to the following
+```def operator_func(op_func, *args):
+    return reduce(op_func, map(int, args))```
+And then call it via:
+```def add(args):
+    return operator_func(operator.add, args)```
+etc (edited)
+'''
