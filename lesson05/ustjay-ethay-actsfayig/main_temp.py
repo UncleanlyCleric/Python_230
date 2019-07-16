@@ -62,8 +62,14 @@ def template():
     return page_template
 
 
-def b_soup():
-    pass
+def b_soup(response):
+    '''
+    This is me trying to figure out how not to replicate code.
+    '''
+    soup = BeautifulSoup(response.content, 'html.parser')
+    output = soup.find_all('div', id='content')
+
+    return output
 
 
 def get_fact():
@@ -72,8 +78,10 @@ def get_fact():
     '''
     response = requests.get('http://unkno.com')
 
-    soup = BeautifulSoup(response.content, 'html.parser')
-    facts = soup.find_all('div', id='content')
+    facts = b_soup(response)
+
+#    soup = BeautifulSoup(response.content, 'html.parser')
+#    facts = soup.find_all('div', id='content')
 
     fact = facts[0].getText()
 
@@ -91,7 +99,7 @@ def get_page(fact):
     url = 'https://hidden-journey-62459.herokuapp.com'
     payload = {'input_text': fact}
     request_return = requests.post(url, data=payload, allow_redirects=False)
-    new_page = request_return.headers['Location']
+    new_page = request_return.headers["Location"]
 
     return new_page
 
