@@ -62,10 +62,6 @@ def template():
     return page_template
 
 
-def b_soup():
-    pass
-
-
 def get_fact():
     '''
     This section retrieves a fact from unkno.com
@@ -84,18 +80,6 @@ def get_fact():
     return fact
 
 
-def get_page(fact):
-    '''
-    This will translate the fact into pig latin.  With some luck.
-    '''
-    url = 'https://hidden-journey-62459.herokuapp.com'
-    payload = {'input_text': fact}
-    request_return = requests.post(url, data=payload, allow_redirects=False)
-    new_page = request_return.headers['Location']
-
-    return new_page
-
-
 def get_translation(new_page):
     '''
     Ultimately, this is the function that translates to pig latin.
@@ -103,10 +87,22 @@ def get_translation(new_page):
     response = requests.get(new_page)
     soup = BeautifulSoup(response.content, 'html.parser')
 
-    fact = soup.find("body").getText()
+    fact = soup.find('body').getText()
     strip_fact = fact.replace('Pig Latin\nEsultray', '')
 
     return strip_fact
+
+
+def get_page(fact):
+    '''
+    This will translate the fact into pig latin.  With some luck.
+    '''
+    url = 'https://hidden-journey-62459.herokuapp.com'
+    payload = {'input_text': fact}
+    request_return = requests.post(url, data=payload, allow_redirects=False)
+    new_page = request_return.headers["Location"]
+
+    return new_page
 
 
 @APP.route('/')
