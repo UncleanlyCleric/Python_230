@@ -80,6 +80,18 @@ def get_fact():
     return fact
 
 
+def get_page(fact):
+    '''
+    This will send the aforementioned fact to the translation application
+    '''
+    url = 'https://hidden-journey-62459.herokuapp.com'
+    payload = {'input_text': fact}
+    request_return = requests.post(url, data=payload, allow_redirects=False)
+    new_page = request_return.headers['Location']
+
+    return new_page
+
+
 def get_translation(new_page):
     '''
     Ultimately, this is the function that translates to pig latin.
@@ -91,18 +103,6 @@ def get_translation(new_page):
     strip_fact = fact.replace('Pig Latin\nEsultray', '')
 
     return strip_fact
-
-
-def get_page(fact):
-    '''
-    This will translate the fact into pig latin.  With some luck.
-    '''
-    url = 'https://hidden-journey-62459.herokuapp.com'
-    payload = {'input_text': fact}
-    request_return = requests.post(url, data=payload, allow_redirects=False)
-    new_page = request_return.headers['Location']
-
-    return new_page
 
 
 @APP.route('/')
@@ -124,7 +124,7 @@ if __name__ == '__main__':
 # https://hidden-journey-62459.herokuapp.com
 
 '''
-ve:ustjay-ethay-actsfayig jmiller$ python main.py
+eve:ustjay-ethay-actsfayig jmiller$ python main.py
  * Tip: There are .env files present. Do "pip install python-dotenv" to use them.
  * Serving Flask app "main" (lazy loading)
  * Environment: production
