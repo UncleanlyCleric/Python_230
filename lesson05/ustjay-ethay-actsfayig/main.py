@@ -91,7 +91,6 @@ def get_page(fact):
     payload = {'input_text': fact}
     request_return = requests.post(url, data=payload, allow_redirects=False)
     new_page = request_return.headers['Location']
-    # new_page = request_return.text
 
     return new_page
 
