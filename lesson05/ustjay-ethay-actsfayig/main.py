@@ -83,13 +83,15 @@ def get_fact():
 
 def get_page(fact):
     '''
-    This will send the aforementioned fact to the translation application
+    This will send the aforementioned fact to the translation application.
+    Initially I had a problem of 405 and 500 errors with this section,
+    it turned out, I needed to add the piglatinize directory to the URL
     '''
-    url = 'https://hidden-journey-62459.herokuapp.com'
+    url = 'https://hidden-journey-62459.herokuapp.com/piglatinize/'
     payload = {'input_text': fact}
     request_return = requests.post(url, data=payload, allow_redirects=False)
-    # new_page = request_return.headers['Location']
-    new_page = request_return.text
+    new_page = request_return.headers['Location']
+    # new_page = request_return.text
 
     return new_page
 
@@ -123,37 +125,6 @@ if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 6787))
     app.run(host='0.0.0.0', port=PORT)
 
-# https://hidden-journey-62459.herokuapp.com
-
 '''
-eve:ustjay-ethay-actsfayig jmiller$ python main.py
- * Tip: There are .env files present. Do "pip install python-dotenv" to use them.
- * Serving Flask app "main" (lazy loading)
- * Environment: production
-   WARNING: Do not use the development server in a production environment.
-   Use a production WSGI server instead.
- * Debug mode: off
- * Running on http://0.0.0.0:6787/ (Press CTRL+C to quit)
-[2019-07-17 11:58:10,186] ERROR in app: Exception on / [GET]
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/usr/local/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
-    raise value
-  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "main.py", line 114, in home
-    new_page = get_page(fact)
-  File "main.py", line 103, in get_page
-    new_page = request_return.headers["Location"]
-  File "/usr/local/lib/python3.7/site-packages/requests/structures.py", line 54, in __getitem__
-    return self._store[key.lower()][1]
-KeyError: 'location'
-127.0.0.1 - - [17/Jul/2019 11:58:10] "GET / HTTP/1.1" 500 -
+App at https://nameless-shore-99856.herokuapp.com/
 '''
