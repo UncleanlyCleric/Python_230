@@ -2,12 +2,13 @@
 '''
 Just the facts script Python230 lesson 05
 '''
+# pylint: disable=C0103
 import os
 import requests
 from flask import Flask
 from bs4 import BeautifulSoup
 
-APP = Flask(__name__)
+app = Flask(__name__)
 
 
 def template():
@@ -87,7 +88,8 @@ def get_page(fact):
     url = 'https://hidden-journey-62459.herokuapp.com'
     payload = {'input_text': fact}
     request_return = requests.post(url, data=payload, allow_redirects=False)
-    new_page = request_return.headers['Location']
+    # new_page = request_return.headers['Location']
+    new_page = request_return.text
 
     return new_page
 
@@ -105,7 +107,7 @@ def get_translation(new_page):
     return strip_fact
 
 
-@APP.route('/')
+@app.route('/')
 def home():
     '''
     Web application home page.
@@ -119,7 +121,7 @@ def home():
 
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 6787))
-    APP.run(host='0.0.0.0', port=PORT)
+    app.run(host='0.0.0.0', port=PORT)
 
 # https://hidden-journey-62459.herokuapp.com
 
