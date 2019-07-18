@@ -43,7 +43,7 @@ def template():
         <div class="card-body">
         <h5 class="card-title">Translation Page</h5>
         <p class="card-text">{}</p>
-        <a class="btn btn-secondary" href="{}" role="button">Go to translation</a>
+        <a class="btn btn-secondary" href="{}" role="button" target="_blank">Go to translation</a>
         </div>
     </div>
     <div class="card">
@@ -51,7 +51,7 @@ def template():
         <div class="card-body">
         <h5 class="card-title">Fact in Pig Latin</h5>
         <p class="card-text">{}</p>
-        <a class="btn btn-secondary" href="https://en.wikipedia.org/wiki/Pig_Latin" role="button">Learn about Pig Latin</a>
+        <a class="btn btn-secondary" href="https://en.wikipedia.org/wiki/Pig_Latin" role="button" target="_blank">Learn about Pig Latin</a>
         </div>
     </div>
     </div>
@@ -91,6 +91,7 @@ def get_page(fact):
     payload = {'input_text': fact}
     request_return = requests.post(url, data=payload, allow_redirects=False)
     new_page = request_return.headers['Location']
+    # new_page = request_return.text
 
     return new_page
 
@@ -123,7 +124,3 @@ def home():
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 6787))
     app.run(host='0.0.0.0', port=PORT)
-
-'''
-App at https://nameless-shore-99856.herokuapp.com/
-'''
