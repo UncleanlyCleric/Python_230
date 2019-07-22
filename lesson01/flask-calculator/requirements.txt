@@ -17,7 +17,7 @@ decorator==4.3.0
 deepdiff==4.0.6
 entrypoints==0.3
 flake8==3.7.7
-Flask==1.0.0
+Flask==1.1.1
 gunicorn==19.9.0
 idna==2.8
 ipython==7.2.0
