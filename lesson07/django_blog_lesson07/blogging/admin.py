@@ -1,7 +1,9 @@
 from django.contrib import admin
 from blogging.models import Post, Category
 
-# Create an InlineModelAdmin to represent Categories on the Post admin view
+'''
+Creating ModelAdmin and CategoryInline for the PostAdmin page
+'''
 class CategoryInline(admin.TabularInline):
     model = Category.posts.through
 
@@ -15,5 +17,7 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    # Exclude the "posts" field from the form in the Category admin
+    '''
+    Excluding posts
+    '''
     exclude = ('posts',)
