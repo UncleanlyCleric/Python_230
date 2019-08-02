@@ -1,0 +1,2 @@
+py230-ubtuntu02004009.westus.cloudapp.azure.com
+python-230-postgresql-5000016.westus.cloudapp.azure.com
