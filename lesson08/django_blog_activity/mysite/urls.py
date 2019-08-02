@@ -18,9 +18,6 @@ from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
-    path('polling/', include('polling.urls')),  # <-- Add this
-    path('admin/', admin.site.urls),
-    path('', include('blogging.urls')),
     path('', include('blogging.urls')),  # <- already there
     path('admin/', admin.site.urls),   # <- already there
     path('login/', LoginView.as_view(template_name='login.html'), name="login"),
