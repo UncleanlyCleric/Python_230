@@ -9,9 +9,16 @@
 <div class="post-body">
     {{ post.text }}
 </div>
+
+<p>
+<div class="fb-like" data-href="{% url "blog_detail" post.pk %}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+</p>
+
+
 <ul class="categories">
     {% for category in post.categories.all %}
         <li>{{ category }}</li>
     {% endfor %}
 </ul>
+
 {% endblock %}
