@@ -1,3 +1,3 @@
-# django-blog-6
+# django-blog-8
 
-Lesson 06: Using APIs & Introduction to Django
+Lesson 08:  Security and add-ons.
