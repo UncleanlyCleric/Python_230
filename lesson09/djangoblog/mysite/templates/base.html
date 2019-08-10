@@ -1,0 +1,56 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Django Blog</title>
+        <link type="text/css" rel="stylesheet" href="{% static "django_blog.css" %}">
+    </head>
+    <body>
+
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '{2349251921800716}',
+            cookie     : true,
+            xfbml      : true,
+            version    : '{v3.3}'
+          });
+          FB.AppEvents.logPageView();
+        };
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "https://connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+      </script>
+
+
+
+      <div id="fb-root"></div>
+      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=2349251921800716&autoLogAppEvents=1"></script>
+
+          <div id="header">
+              <ul id="control-bar">
+                  {% if user.is_authenticated %}
+                  {% if user.is_staff %}<li><a href="{% url 'admin:index' %}">admin</a></li>{% endif %}
+                      <li><a href="{% url 'logout' %}">logout</a></li>
+                  {% else %}
+  <!--                    <li><a href="{% url 'login' %}">login</a></li>-->
+                      <li><a href="http://localhost:8000/accounts/login">login</a></li>
+
+                  {% endif %}
+              </ul>
+          </div>
+
+        <div id="container">
+            <div id="content">
+                {% block content %}
+                [ content will go here ]
+                {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

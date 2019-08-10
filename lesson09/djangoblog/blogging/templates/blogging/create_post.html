@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block content %}
+    <a class="backlink" href="/">Home</a>
+    <h1>Create Post</h1>
+    <body>
+
+    <form method="post" >
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <input type="submit" value="Submit"/>
+    </form>
+    </body>
+
+{% endblock %}
