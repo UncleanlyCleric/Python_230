@@ -78,6 +78,6 @@ urllib3==1.24.1
 virtualenv==16.4.0
 virtualenv-clone==0.5.1
 wcwidth==0.1.7
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 wrapt==1.11.0
 zc.lockfile==1.4
