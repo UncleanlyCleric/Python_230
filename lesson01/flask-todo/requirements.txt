@@ -75,7 +75,7 @@ swampy==2.1.7
 tempora==1.14
 traitlets==4.3.2
 undecorated==0.3.0
-urllib3==1.24.2
+urllib3==1.26.5
 virtualenv==16.4.0
 virtualenv-clone==0.5.1
 virtualenvwrapper==4.8.4
