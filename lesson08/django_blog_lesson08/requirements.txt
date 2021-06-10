@@ -1,4 +1,4 @@
-Django==2.2.4
+Django==2.2.24
 pytz==2018.9
 django-allauth==0.39.1
 djangorestframework==3.10.2
